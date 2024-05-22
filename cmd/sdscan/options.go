@@ -102,7 +102,7 @@ query options:
         Probes for SRV recrods by trying service names from a list
         See -service-names and -service-names-batch-size
 
-      * napatr
+      * naptr
         Probes for NAPTR records
 
     Multiple probes may be specified in a comma-delimited list (e.g., "dnssd,ptr")
@@ -118,8 +118,8 @@ query options:
 
   -service-names SERVICE_NAME_FILE
     The ptr and srv probes directly query for ~50 popular service names, such
-    as _sip._udp and _ipps._tcp.  You can override this list by specifiy a file
-    that has one service name per line.
+    as _sip._udp and _ipps._tcp.  You can override this list by specifying a
+    file that has one service name per line.
 
   -service-names-batch-size B
     By default, the ptr and srv probes make queries for all service names
