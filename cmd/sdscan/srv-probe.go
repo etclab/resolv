@@ -83,7 +83,7 @@ func SRVQuery(c *resolv.Client, domainname string, validate bool) []*ServiceInst
 				Target:   srv.Target,
 			},
 		}
-		infox.SrvValidated = srvValidated
+		infox.SRVValidated = srvValidated
 
 		if infox.Target != "." {
 			infox.Addrs = getServiceIPs(c, infox.Target, resp)

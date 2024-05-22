@@ -12,7 +12,7 @@ import (
 type ServiceInstanceInfoX struct {
 	resolv.ServiceInstanceInfo
 	// SRV record(s) DNSSEC validation
-	SrvValidated DNSSECValidationResult
+	SRVValidated DNSSECValidationResult
 	// A record(s) DNSSEC validation
 	AValidated DNSSECValidationResult
 	// AAAA record(s) DNSSEC validation
@@ -26,7 +26,7 @@ func InfoXFromInfo(info *resolv.ServiceInstanceInfo) *ServiceInstanceInfoX {
 }
 
 func (info *ServiceInstanceInfoX) CheckDNSSECValidation(c *resolv.Client) {
-	info.SrvValidated = CheckDNSSECValidation(c, info.Name, dns.TypeSRV)
+	info.SRVValidated = CheckDNSSECValidation(c, info.Name, dns.TypeSRV)
 	info.AValidated = CheckDNSSECValidation(c, info.Target, dns.TypeA)
 	info.AAAAValidated = CheckDNSSECValidation(c, info.Target, dns.TypeAAAA)
 }
