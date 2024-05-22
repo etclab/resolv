@@ -9,103 +9,103 @@ DNS-over-HTTPS.
 
 ```
 {   
-	Rank: <int>
+    Rank: <int>
     QName: <string>
 
-   	DNSSDProbe: <null> | { 
-    	ServiceBrowsers: [
-        	<str>,
+    DNSSDProbe: <null> | { 
+        ServiceBrowsers: [
+            <str>,
             ... 
-      	]   
-        DefaultServiceBrowser: <str>
+        ],  
+        DefaultServiceBrowser: <str>,
         LegacyServiceBrowsers: [
-        	<str>,
-           	... 
-       	],  
-    	Services: {
-        	<str>: [
-            	{   
-                	Name: <str>,
-                    Priority: <int>,
-                    Weight: <int>,
-                    Port: <int>,
-                    Target: <str>,
-                    Txt: <null> | [ 
-                    	<str>,
-                        ... 
-                   	],
-                   	SRVValidated: {
-                    	Validated: <bool>,
-                        Rcode: <int>,
-                        ExtendedErrorCode: <int>
-                  	},  
-                    AValidated: {
-                    	Validated: <bool>,
-                        Rcode: <int>,
-                        ExtendedErrorCode: <int>
-                  	},  
-                   	AAAAValidated: {
-                    	Validated: <bool>,
-                     	Rcode: <int>,
-                        ExtendedErrorCode: <int>
-                   	}   
-             	},  
-              	... 
-          	],  
+            <str>,
             ... 
-      	}   
-  	},  
-        
-	PTRProbe: <null> | { 
-    	Services: {
-        	<str>: [
-            	{   
-                	Name: <str>,
+        ],  
+        Services: {
+            <str>: [
+                {   
+                    Name: <str>,
                     Priority: <int>,
                     Weight: <int>,
                     Port: <int>,
                     Target: <str>,
                     Txt: <null> | [ 
-                    	<str>,
-                      	... 
-                   	],
-                 	SRVValidated: {
-                    	Validated: <bool>,
+                        <str>,
+                        ... 
+                    ],
+                    SRVValidated: {
+                        Validated: <bool>,
                         Rcode: <int>,
                         ExtendedErrorCode: <int>
-                 	},  
+                    },  
                     AValidated: {
-                    	Validated: <bool>,
+                        Validated: <bool>,
                         Rcode: <int>,
                         ExtendedErrorCode: <int>
-                  	},
-                  	AAAAValidated: {
-                    	Validated: <bool>,
+                    },  
+                    AAAAValidated: {
+                        Validated: <bool>,
                         Rcode: <int>,
                         ExtendedErrorCode: <int>
-                 	}
-               	},
-               	...
-         	],
+                    }   
+                },  
+                ... 
+            ],  
+            ... 
+        }   
+    },  
+        
+    PTRProbe: <null> | { 
+        Services: {
+            <str>: [
+                {   
+                    Name: <str>,
+                    Priority: <int>,
+                    Weight: <int>,
+                    Port: <int>,
+                    Target: <str>,
+                    Txt: <null> | [ 
+                        <str>,
+                          ... 
+                       ],
+                     SRVValidated: {
+                        Validated: <bool>,
+                        Rcode: <int>,
+                        ExtendedErrorCode: <int>
+                     },  
+                    AValidated: {
+                        Validated: <bool>,
+                        Rcode: <int>,
+                        ExtendedErrorCode: <int>
+                      },
+                      AAAAValidated: {
+                        Validated: <bool>,
+                        Rcode: <int>,
+                        ExtendedErrorCode: <int>
+                     }
+                   },
+                   ...
+            ],
             ...
-     	}
-   	},
+        }
+    },
 
-   	NAPTRProbe: {
-    	NAPTRs: [
-        	{
-            	Order: <int>,
+    NAPTRProbe: {
+        NAPTRs: [
+            {
+                Order: <int>,
                 Preference: <int>,
                 Flags: <str>,
                 Service: <str>,
                 Regexp: <str>,
                 Replacement: <str>,
                 NAPTRValidated: {
-                	Validated: <bool>
+                    Validated: <bool>
                     Rcode: <int>,
                     ExtendedErrorCode: <int>
-               	}
-            	Services: nil | [
+                }
+                Services: nil | [
                     {
                         Name: <str>,
                         Priority: <int>,
@@ -135,9 +135,9 @@ DNS-over-HTTPS.
                     ...
                 ]
             },
-           	...
+               ...
         ]
-  	}
+    }
 }
                                                                                                          166,0-1       Bot
 
