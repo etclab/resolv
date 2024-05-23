@@ -99,6 +99,45 @@ DNS-over-HTTPS.
         }
     },
 
+    SRVProbe: null | {
+        Services: {
+            <str>: [
+                {   
+                    Name: <str>,
+                    Priority: <int>,
+                    Weight: <int>,
+                    Port: <int>,
+                    Target: <str>,
+                    Txt: <null> | [ 
+                        <str>,
+                          ... 
+                    ],
+                    Addrs: [
+                        <str>,
+                        ...,
+                    ],
+                    SRVValidated: {
+                        Validated: <bool>,
+                        Rcode: <int>,
+                        ExtendedErrorCode: <int>
+                    },  
+                    AValidated: {
+                        Validated: <bool>,
+                        Rcode: <int>,
+                        ExtendedErrorCode: <int>
+                    },
+                    AAAAValidated: {
+                        Validated: <bool>,
+                        Rcode: <int>,
+                        ExtendedErrorCode: <int>
+                    }
+                },
+                ...
+            ],
+            ...
+        }
+    },
+
     NAPTRProbe: {
         NAPTRs: [
             {
