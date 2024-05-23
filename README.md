@@ -34,6 +34,10 @@ DNS-over-HTTPS.
                         <str>,
                         ... 
                     ],
+                    Addrs: [
+                        <str>,
+                        ...,
+                    ],
                     SRVValidated: {
                         Validated: <bool>,
                         Rcode: <int>,
@@ -68,24 +72,28 @@ DNS-over-HTTPS.
                     Txt: <null> | [ 
                         <str>,
                           ... 
-                       ],
-                     SRVValidated: {
+                    ],
+                    Addrs: [
+                        <str>,
+                        ...,
+                    ],
+                    SRVValidated: {
                         Validated: <bool>,
                         Rcode: <int>,
                         ExtendedErrorCode: <int>
-                     },  
+                    },  
                     AValidated: {
                         Validated: <bool>,
                         Rcode: <int>,
                         ExtendedErrorCode: <int>
-                      },
-                      AAAAValidated: {
+                    },
+                    AAAAValidated: {
                         Validated: <bool>,
                         Rcode: <int>,
                         ExtendedErrorCode: <int>
-                     }
-                   },
-                   ...
+                    }
+                },
+                ...
             ],
             ...
         }
@@ -113,8 +121,12 @@ DNS-over-HTTPS.
                         Port: <int>,
                         Target: <str>,
                         Txt: <null> | [
-                        <str>,
+                            <str>,
                             ...
+                        ],
+                        Addrs: [
+                            <str>,
+                            ...,
                         ],
                         SRVValidated: {
                             Validated: <bool>,
