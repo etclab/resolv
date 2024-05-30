@@ -1,0 +1,28 @@
+1. 15-20 mins per plot so it can be continued if necessary
+2. create set of services
+
+questions:
+- finally, how many services in scan list?
+	- manageable set of services to study
+	- depends on how much time you have to scan
+	- potentially 100
+- next steps?
+	- scan tranco with each 'popular' service from above
+	- final scan should collect:
+		- dnssec info (validator flag)
+	- do authoritative servers for domains:
+		a) what are they?
+		b) do they support some type of encrypted dns
+			- not currently implemented
+		- dns over quikk
+	- collect correlation between security for service-advertising domains and domains with no services?
+	- do handshake with each of these services to understand:
+		- authentication
+		- is using tls
+		- save cert
+		- is it requesting cert from me
+		- cert validity
+		- does it try to upgrade handshake security (eg smtp -> tls)
+	- examination of txt records
+	- look into zgrab tool (zmap.io)
+		- potentially extend

@@ -1,0 +1,19 @@
+reset
+
+set terminal pngcairo size 1500,300
+set output 'domain-service-count.png'
+set datafile separator ","
+
+set offsets 0, 0, 2, 2
+
+set style data histogram
+set style histogram
+set style fill solid
+
+set title "Domain-Service Usage"
+set xlabel "Number of Domains Advertising"
+set ylabel "Number of Services"
+
+set xtics rotate by 90 right
+
+plot "data.csv" using 2:xtic((int($0) % 10)==0?stringcolumn(1):"")
