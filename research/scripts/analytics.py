@@ -171,8 +171,9 @@ def service_from_domain_name(name):
         raise ValueError("cannot parse service from \"%s\": \
                 service name label does not start with an underscore" % name)
     if not labels[1].startswith("_"):
-        raise ValueError("cannot parse service from \"%s\": \
-                protocol label does not start with an underscore" % name)
+        pass
+        #raise ValueError("cannot parse service from \"%s\": \
+                #protocol label does not start with an underscore" % name)
     return '%s.%s' % (labels[0], labels[1])
 
 

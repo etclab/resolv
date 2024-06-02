@@ -66,10 +66,58 @@ def main():
     records = analytics.read_scan_file(args.scan_file)
     records = analytics.sanitize(records)
 
+    for record in records:
+        #print(record["QName"])
+
+        if record["DNSSDProbe"]:
+            record_type = "DNSSDProbe"
+
+            for service_instances in record[record_type]["Services"].values():
+
+                for service_instance_list in service_instances:
+
+                    if service_instance_list["Txt"]:
+                        print(record["QName"])
+                        print("Name:", service_instance_list["Name"], "Target:", service_instance_list["Target"])
+                        print(service_instance_list["Txt"])
+
+
+
+
+
+        if record["PTRProbe"]:
+            record_type = "PTRProbe"
+
+            for service_instances in record[record_type]["Services"].values():
+
+                for service_instance_list in service_instances:
+
+                    if service_instance_list["Txt"]:
+                        print(record["QName"])
+                        print("Name:", service_instance_list["Name"], "Target:", service_instance_list["Target"])
+                        print(service_instance_list["Txt"])
+
+
+
+
+        if record["SRVProbe"]:
+            record_type = "SRVProbe"
+
+            for service_instances in record[record_type]["Services"].values():
+
+                for service_instance_list in service_instances:
+
+                    if service_instance_list["Txt"]:
+                        print(record["QName"])
+                        print("Name:", service_instance_list["Name"], "Target:", service_instance_list["Target"])
+                        print(service_instance_list["Txt"])
+
+
     if args.mode == "plot":
         generate_plot_data(records)
     elif args.mode == "scan":
         generate_scan_data(records, int(args.threshold)) # second parameter represents bar cutoff
 
+    
 if __name__ == '__main__':
     main()
