@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"net/netip"
+	"slices"
+	"strings"
 
 	"github.com/etclab/functools"
 	"github.com/etclab/mu"
@@ -167,4 +169,31 @@ func (c *Client) GetNameservers(name string) ([]*Nameserver, error) {
 
 	mu.BUG("neither addresses nor errors")
 	return nil, nil
+}
+
+func (c *Client) GetApexDomain(name string) (string, error) {
+	labels := dns.SplitDomainName(name)
+	for len(labels) != 0 {
+		target := dns.Fqdn(strings.Join(labels, "."))
+		_, err := c.Lookup(target, dns.TypeSOA)
+		if err == nil {
+			return target, nil
+		}
+		if err != ErrNoData {
+			return "", err
+		}
+		labels = slices.Delete(labels, 0, 1)
+	}
+	return "", nil
+}
+
+func (c *Client) GetParentZoneApexDomain(name string) (string, error) {
+	apex, err := c.GetApexDomain(name)
+	if err != nil {
+		return "", err
+	}
+	labels := dns.SplitDomainName(apex)
+	labels = slices.Delete(labels, 0, 1)
+	target := dns.Fqdn(strings.Join(labels, "."))
+	return c.GetApexDomain(target)
 }

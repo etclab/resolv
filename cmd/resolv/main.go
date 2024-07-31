@@ -14,6 +14,24 @@ import (
 
 /* meta queries */
 
+func getApex(c *resolv.Client, qname string) error {
+	apex, err := c.GetApexDomain(qname)
+	if err != nil {
+		return err
+	}
+	fmt.Println(apex)
+	return nil
+}
+
+func getParentApex(c *resolv.Client, qname string) error {
+	apex, err := c.GetParentZoneApexDomain(qname)
+	if err != nil {
+		return err
+	}
+	fmt.Println(apex)
+	return nil
+}
+
 func getIPs(c *resolv.Client, qname string) error {
 	addrs, err := c.GetIPs(qname)
 	if err != nil {
@@ -151,6 +169,10 @@ func main() {
 	}
 
 	switch opts.qtypeStr {
+	case "@APEX":
+		err = getApex(c, opts.qname)
+	case "@PARENT_APEX":
+		err = getParentApex(c, opts.qname)
 	case "@IPS":
 		err = getIPs(c, opts.qname)
 	case "@NAMESERVERS":

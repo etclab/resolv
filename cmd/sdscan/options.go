@@ -105,6 +105,9 @@ query options:
       * naptr
         Probes for NAPTR records
 
+      * dnssec
+        Tries to retrieve DNSKEY and the DS records.
+
     Multiple probes may be specified in a comma-delimited list (e.g., "dnssd,ptr")
     By default all probes are run.
 
@@ -269,14 +272,14 @@ func parseOptions() *Options {
 
 	opts.probe = strings.ToLower(opts.probe)
 	names := set.New(strings.Split(opts.probe, ",")...)
-	legit := set.New("all", "dnssd", "ptr", "srv", "naptr")
+	legit := set.New("all", "dnssd", "ptr", "srv", "naptr", "dnssec")
 	for _, name := range names.Items() {
 		if !legit.Has(name) {
 			mu.Fatalf("invalid probe name: %q", name)
 		}
 	}
 	if names.Has("all") {
-		opts.probeNames = set.New("dnssd", "ptr", "srv", "naptr")
+		opts.probeNames = set.New("dnssd", "ptr", "srv", "naptr", "dnssec")
 	} else {
 		opts.probeNames = names
 	}

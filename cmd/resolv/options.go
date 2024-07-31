@@ -154,10 +154,16 @@ query options:
     In addition to the standard DNS queries, the tool also supports
     a few meta queries:
 
+      @apex
+        Get the apex domain for the zone in which QNAME resides.
+
+      @parent_apex
+        Get the apex domain for the parent zone of QNAME.
+
       @ips
         Get the IP addresses for the QNAME (performs both A and
         a AAAA queries).
-        
+
       @nameservers
         Get the nameservers (their domainnames and IP addresses)
         that are responsible for QNAME.  This meta-query results
@@ -209,6 +215,8 @@ var metaQueries = map[string]bool{
 	"@IPS":         true,
 	"@NAMESERVERS": true,
 	"@SERVICES":    true,
+	"@APEX":        true,
+	"@PARENT_APEX": true,
 }
 
 func printUsage() {

@@ -20,12 +20,13 @@ type InputRecord struct {
 }
 
 type ScanRecord struct {
-	Rank       int
-	QName      string
-	DNSSDProbe *DNSSDProbeResult
-	PTRProbe   *PTRProbeResult
-	SRVProbe   *SRVProbeResult
-	NAPTRProbe *NAPTRProbeResult
+	Rank        int
+	QName       string
+	DNSSDProbe  *DNSSDProbeResult
+	PTRProbe    *PTRProbeResult
+	SRVProbe    *SRVProbeResult
+	NAPTRProbe  *NAPTRProbeResult
+	DNSSECProbe *DNSSECProbeResult
 }
 
 func NewScanRecord(rank int, qname string) *ScanRecord {
@@ -37,7 +38,7 @@ func NewScanRecord(rank int, qname string) *ScanRecord {
 
 // HasResults returns true if at least one of the probes has result data
 func (r *ScanRecord) HasResults() bool {
-	return r.DNSSDProbe != nil || r.PTRProbe != nil || r.SRVProbe != nil || r.NAPTRProbe != nil
+	return r.DNSSDProbe != nil || r.PTRProbe != nil || r.SRVProbe != nil || r.NAPTRProbe != nil || r.DNSSECProbe != nil
 }
 
 func processFile(path string, ch chan<- *InputRecord) {
@@ -167,6 +168,9 @@ func main() {
 				}
 				if opts.probeNames.Has("naptr") {
 					rec.NAPTRProbe = DoNAPTRProbe(c, inRec.Domainname, opts.validate)
+				}
+				if opts.probeNames.Has("dnssec") {
+					rec.DNSSECProbe = DoDNSSECProbe(c, inRec.Domainname)
 				}
 				outch <- rec
 			}
